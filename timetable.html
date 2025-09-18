@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Class Timetable</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f8f9fa;
+      color: #222;
+    }
+    h2, h3 {
+      text-align: center;
+      margin: 5px 0;
+    }
+    .info {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+      font-size: 13px;
+    }
+    th {
+      background: #0077b6;
+      color: white;
+    }
+    .break {
+      background: #ffeeba;
+      font-weight: bold;
+      writing-mode: vertical-rl;
+      text-orientation: upright;
+    }
+    .lunch {
+      background: #ffccd5;
+      font-weight: bold;
+      writing-mode: vertical-rl;
+      text-orientation: upright;
+    }
+    .footer {
+      margin-top: 20px;
+      font-size: 13px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h2>ABES Engineering College, Ghaziabad</h2>
+  <h3>CLASS TIME TABLE</h3>
+  <div class="info">
+    <p><strong>Course:</strong> B. Tech | <strong>Department:</strong> CSE-DS | <strong>w.e.f.:</strong> 26 Aug 2025</p>
+    <p><strong>Semester/Section:</strong> V/A | <strong>Session:</strong> 2025-26 (Odd Semester)</p>
+    <p><strong>Class Room No:</strong> KC-3F-LT-305</p>
+  </div>
+
+  <table>
+    <tr>
+      <th>DAY</th>
+      <th>8:50-9:40<br>L1</th>
+      <th>9:40-10:30<br>L2</th>
+      <th>10:40-11:30<br>L3</th>
+      <th>11:30-12:20<br>L4</th>
+      <th>12:20-1:10</th>
+      <th>1:10-2:00<br>L5</th>
+      <th>2:00-2:50<br>L6</th>
+      <th>2:50-3:40<br>L7</th>
+      <th>3:40-4:30<br>L8</th>
+    </tr>
+    <tr>
+      <td>Mon</td>
+      <td colspan="2">DBMS - BCS501 (YB)</td>
+      <td class="break" rowspan="5">BREAK</td>
+      <td>CSE(DS)-A || QA/LR (Harshit Sharma)</td>
+      <td class="lunch" rowspan="5">LUNCH</td>
+      <td>OOSD - BCS054 (VK)</td>
+      <td colspan="2">DSA Training - Ms. Priyanka Gupta</td>
+    </tr>
+    <tr>
+      <td>Tue</td>
+      <td colspan="2">DSA Training - Ms. Priyanka Gupta</td>
+      <td>DAA - BCS503 (MP)</td>
+      <td colspan="2">DA - BCDS501 (MS)</td>
+      <td>OOSD - BCS054 (VK)</td>
+      <td>CSE(DS)-A || SS (Dr. Abrity Thakur)</td>
+    </tr>
+    <tr>
+      <td>Wed</td>
+      <td>DAA - BCS503 (MP)</td>
+      <td>OOSD - BCS054 (VK)</td>
+      <td colspan="2">Domain Training</td>
+      <td>AOSC - BCS056 (Shreya)</td>
+      <td>DBMS - BCS501 (YB)</td>
+      <td>DA Lab - BCDS551 (MS | VK)</td>
+      <td>DAA - BCS503 (MP)</td>
+    </tr>
+    <tr>
+      <td>Thu</td>
+      <td>AOSC - BCS056 (Shreya)</td>
+      <td>DBMS - BCS501 (YB)</td>
+      <td>CSE(DS)-A || VA (LD)</td>
+      <td colspan="2">DAA Lab - BCS553 (MP | DD)</td>
+      <td>FSD Training - Ms. Divya Raj</td>
+      <td colspan="2">DAA Lab - BCS553 (MP | DD)</td>
+    </tr>
+    <tr>
+      <td>Fri</td>
+      <td>AOSC - BCS056 (Shreya)</td>
+      <td>DA - BCDS501 (MS)</td>
+      <td>FSD Training - Ms. Divya Raj</td>
+      <td>DA - BCDS501 (MS)</td>
+      <td>DAA - BCS503 (MP)</td>
+      <td colspan="2">DBMS Lab - BCS551 (YB | DD)</td>
+    </tr>
+  </table>
+</body>
+</html>
