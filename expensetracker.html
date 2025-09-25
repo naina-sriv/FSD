@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Expense Tracker</title>
+</head>
+<body>
+    <h2>Expense Tracker</h2>
+    <form>
+        <label>
+            Expense Name:
+            <input type="text" name="expense_name" required>
+        </label>
+        <br>
+        <label>
+            Amount:
+            <input type="number" name="amount" min="0" step="0.01" required>
+        </label>
+        <br>
+        <label>
+            Description:
+            <input type="text" name="description">
+        </label>
+        <br>
+        <label>
+            Date:
+            <input type="date" name="date" required>
+        </label>
+        <br>
+        <button type="submit">Add Expense</button>
+    </form>
+    <div style="margin: 20px 0;">
+        <input type="text" id="searchBox" placeholder="Search expenses..." style="margin-right:10px;">
+        <label>
+            <input type="date" id="fromDate">
+        </label>
+    </div>
+
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Expense Name</th>
+                <th>Amount</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</body>
+<script>
+    const form = document.querySelector('form');
+    const tbody = document.querySelector('tbody');
+    const searchBox = document.getElementById('searchBox');
+    const fromDate = document.getElementById('fromDate');
+
+    let expenses = [];
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(form);
+        const expense = {
+            name: formData.get('expense_name'),
+            amount: parseFloat(formData.get('amount')).toFixed(2),
+            description: formData.get('description'),
+            date: formData.get('date')
+        };
+        expenses.push(expense);
+        renderTable(expenses);
+        form.reset();
+    });
+
+    function renderTable(data) {
+        tbody.innerHTML = '';
+        data.forEach((expense, index) => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${expense.name}</td>
+                <td>${expense.amount}</td>
+                <td>${expense.description}</td>
+                <td>${expense.date}</td>
+                <td><button onclick="deleteExpense(${index})">Delete</button></td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    window.deleteExpense = function(index) {
+        expenses.splice(index, 1);
+        renderTable(filteredExpenses());
+    };
+
+    function filteredExpenses() {
+        let filtered = expenses;
+        const search = searchBox.value.trim().toLowerCase();
+        const date = fromDate.value;
+        if (search) {
+            filtered = filtered.filter(e =>
+                e.name.toLowerCase().includes(search) ||
+                e.description.toLowerCase().includes(search)
+            );
+        }
+        if (date) {
+            filtered = filtered.filter(e => e.date >= date);
+        }
+        return filtered;
+    }
+
+    searchBox.addEventListener('input', () => renderTable(filteredExpenses()));
+    fromDate.addEventListener('input',()=> renderTable(filteredExpenses()));
+</script>
+</html>
