@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Marks Manager</title>
+</head>
+<body>
+    <h2>Student Marks Manager</h2>
+    <form id="studentForm">
+        <label for="name">Student Name:</label>
+        <input type="text" id="name" required>
+        <label for="marks">Marks:</label>
+        <input type="number" id="marks" min="0" max="100" required>
+        <button type="submit">Add Student</button>
+    </form>
+    <div>
+        <button id="showAll">Show All Students</button>
+        <button id="showPassed">Show Passed Students</button>
+        <button id="showAvg">Show Average Marks</button>
+        <button id="showTopper">Show Topper</button>
+    </div>
+    <section id="results"></section>
+</body>
+<script>
+
+    const form= document.getElementById('studentForm');
+    const results = document.getElementById('results');
+    const showAll = document.getElementById('showAll');
+    const showPassed = document.getElementById('showPassed');
+    const showAvg= document.getElementById('showAvg');
+    const showTopper= document.getElementById('showTopper');
+
+    let students = [];
+    
+    function addStudent(name, marks) {
+        students.push({ name: name, marks: Number(marks) });
+    }
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = document.getElementById('name').value.trim();
+        const marks = document.getElementById('marks').value;
+        if (name && marks !== '') {
+            addStudent(name, marks);
+            form.reset();
+            results.textContent = 'Student added!';
+        }
+    });
+
+    showAll.addEventListener('click', function() {
+        if (students.length === 0) {
+            results.textContent = 'No students found.';
+            return;
+        }
+        const list = students.map(s => `${s.name}: ${s.marks}`).join('<br>');
+        results.innerHTML = `<strong>All Students:</strong><br>${list}`;
+    });
+
+    showPassed.addEventListener('click', function() {
+        const passed = students.filter(s => s.marks >= 40);
+        displayResults(passed, 'Passed Students');
+    });
+
+    showAvg.addEventListener('click', function() {
+        if (students.length === 0) {
+            results.textContent = 'No students to calculate average.';
+            return;
+        }
+        const total = students.reduce((sum, s) => sum + s.marks, 0);
+        const avg = (total / students.length).toFixed(2);
+        results.innerHTML = `<strong>Average Marks:</strong> ${avg}`;
+    });
+
+    function findTopper() {
+        if (students.length === 0) return null;
+        let topper = students[0];
+        for (let i = 1; i < students.length; i++) {
+            if (students[i].marks > topper.marks) {
+                topper = students[i];
+            }
+        }
+        return topper;
+    }
+       
+    showTopper.addEventListener('click', function() {
+        const topper = findTopper();
+        if (topper) {
+            results.innerHTML = `<strong>Topper:</strong> ${topper.name} (${topper.marks})`;
+        } else {
+            results.textContent = 'No students found.';
+        }
+    });
+
+    function displayResults(arr, title) {
+        if (arr.length === 0) {
+            results.textContent = `No ${title.toLowerCase()}.`;
+            return;
+        }
+        const list = arr.map(s => `${s.name}: ${s.marks}`).join('<br>');
+        results.innerHTML = `<strong>${title}:</strong><br>${list}`;
+    }
+</script>
+</html>
