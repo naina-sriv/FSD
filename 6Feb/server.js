@@ -28,7 +28,7 @@ const server = http.createServer((req, res) => {
         res.end('not found');
     }
 });
-
-server.listen(3000,()=>{
-    console.log(`server is running on port ${3000}`);
+const port = 3000;
+server.listen(8000,()=>{
+    console.log(`server is running on port ${port}`);
 });
