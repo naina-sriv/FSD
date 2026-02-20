@@ -1,7 +1,5 @@
-// Make React available globally (needed for CDN-based setup)
 const { useState } = React;
 
-// UserManagement Component
 function UserManagement() {
     const [users, setUsers] = useState([]);
     const [formData, setFormData] = useState({
